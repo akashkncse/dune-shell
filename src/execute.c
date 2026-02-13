@@ -34,6 +34,15 @@ int dsh_execute(char **args)
     {
         return 1;
     }
+
+    for (int i = 0; i < dsh_num_builtin(); i++)
+    {
+        if (strcmp(builtin_str[i], args[0]) == 0)
+        {
+            return builtin_func[i](args);
+        }
+    }
+
     return dsh_launch(args);
 }
 void dsh_loop()
